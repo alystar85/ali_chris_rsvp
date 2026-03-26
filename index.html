@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ali & Chris #Forever&ADay</title>
+    <style>
+      :root {
+        --bg: #faf7f2;
+        --paper: rgba(255,255,255,0.7);
+        --text: #5d6650;
+        --muted: #879072;
+        --line: rgba(93,102,80,0.14);
+        --blush: #e9cdd4;
+        --butter: #f2e6bf;
+        --blue: #d7e2f3;
+        --sage: #7a8465;
+        --shadow: 0 18px 40px rgba(93,102,80,0.08);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(233,205,212,0.18), transparent 28%),
+          radial-gradient(circle at bottom left, rgba(215,226,243,0.16), transparent 25%),
+          linear-gradient(180deg, #fffdfa 0%, var(--bg) 100%);
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; width: 100%; object-fit: cover; }
+      .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+      .section { padding: 88px 0; }
+      .small { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); }
+      .muted { color: var(--muted); }
+      .hero { min-height: 100vh; display: grid; align-items: center; }
+      .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 42px; align-items: center; }
+      h1, h2, h3, h4, p { margin: 0; }
+      h1 { font-size: clamp(58px, 10vw, 112px); line-height: 0.92; font-weight: 500; letter-spacing: -0.05em; }
+      h2 { font-size: clamp(34px, 5vw, 58px); line-height: 1; font-weight: 500; letter-spacing: -0.03em; }
+      .hero-copy { margin-top: 22px; max-width: 560px; font-size: 18px; line-height: 1.9; }
+      .hero-meta { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 720px; }
+      .meta-item { padding: 18px 0; border-top: 1px solid var(--line); }
+      .meta-item strong { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin-bottom: 8px; }
+      .meta-item span { font-size: 20px; }
+      .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+      .btn { min-height: 52px; padding: 0 24px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.2s ease; font-size: 14px; }
+      .btn:hover { transform: translateY(-2px); }
+      .btn-primary { background: var(--sage); color: white; }
+      .btn-secondary { background: white; border: 1px solid var(--line); color: var(--sage); }
+      .hero-visual { position: relative; }
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 18px -18px -18px 18px;
+        background: linear-gradient(135deg, rgba(233,205,212,0.28), rgba(215,226,243,0.18));
+        border-radius: 38px;
+        z-index: 0;
+      }
+      .hero-visual img { position: relative; z-index: 1; height: 640px; border-radius: 38px; box-shadow: var(--shadow); }
+      .split { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 42px; align-items: start; }
+      .intro-block { position: sticky; top: 40px; }
+      .lead { margin-top: 18px; font-size: 18px; line-height: 1.9; max-width: 420px; }
+      .detail-list { display: grid; gap: 28px; }
+      .detail-row { padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+      .detail-row h3 { font-size: 30px; font-weight: 500; margin: 10px 0 10px; }
+      .detail-row p { font-size: 17px; line-height: 1.9; color: var(--muted); }
+      .countdown-strip { margin-top: 46px; padding: 28px 0 0; border-top: 1px solid var(--line); }
+      .countdown-grid { margin-top: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .countdown-item { padding: 22px 18px; border-radius: 26px; background: rgba(255,255,255,0.55); border: 1px solid var(--line); }
+      .countdown-item:nth-child(1) { background: rgba(233,205,212,0.2); }
+      .countdown-item:nth-child(2) { background: rgba(242,230,191,0.22); }
+      .countdown-item:nth-child(3) { background: rgba(215,226,243,0.22); }
+      .countdown-item:nth-child(4) { background: rgba(255,255,255,0.72); }
+      .countdown-number { display: block; font-size: clamp(34px, 5vw, 54px); line-height: 1; }
+      .countdown-label { display: block; margin-top: 8px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+      .photo-grid { display: grid; grid-template-columns: 1.1fr 0.9fr 0.9fr; gap: 16px; align-items: stretch; }
+      .photo-grid img { border-radius: 28px; height: 440px; box-shadow: var(--shadow); }
+      .photo-grid .tall { height: 520px; }
+      .text-banner { margin-top: 20px; font-size: clamp(26px, 3vw, 42px); line-height: 1.2; max-width: 920px; }
+      .faq-list { margin-top: 26px; display: grid; gap: 0; }
+      details { border-top: 1px solid var(--line); padding: 22px 0; }
+      details:last-child { border-bottom: 1px solid var(--line); }
+      summary { list-style: none; cursor: pointer; font-size: 22px; }
+      summary::-webkit-details-marker { display: none; }
+      details p { margin-top: 14px; max-width: 760px; color: var(--muted); line-height: 1.9; font-size: 17px; }
+      .gift-line { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .alias-pill { padding: 14px 18px; border-radius: 999px; background: rgba(233,205,212,0.22); border: 1px solid var(--line); font-size: 18px; }
+      .rsvp { padding-bottom: 96px; }
+      .rsvp-panel { padding: 56px; border-radius: 40px; background: linear-gradient(135deg, #9ca788 0%, #7a8465 100%); color: white; box-shadow: var(--shadow); }
+      .rsvp-panel p { margin-top: 18px; max-width: 700px; color: rgba(255,255,255,0.86); line-height: 1.9; font-size: 17px; }
+      .footer { padding: 0 0 38px; text-align: center; color: var(--muted); font-size: 14px; }
+      @media (max-width: 980px) {
+        .hero { min-height: auto; padding: 56px 0 32px; }
+        .hero-grid, .split, .hero-meta, .countdown-grid, .photo-grid, .gift-line { grid-template-columns: 1fr; }
+        .intro-block { position: static; }
+        .hero-visual img, .photo-grid img, .photo-grid .tall { height: 340px; }
+        .rsvp-panel { padding: 36px 26px; }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="small">Ali & Chris #Forever&ADay</div>
+          <h1>Ali & Chris</h1>
+          <p class="hero-copy muted">
+            Estamos muy felices de compartir este momento con ustedes. Acá van a encontrar toda la información importante para acompañarnos en uno de los días más especiales de nuestra historia.
+          </p>
+          <div class="hero-meta">
+            <div class="meta-item"><strong>Fecha</strong><span>18 de julio de 2026</span></div>
+            <div class="meta-item"><strong>Lugar</strong><span>Jano's Darwin 2</span></div>
+            <div class="meta-item"><strong>Ceremonia</strong><span>18:00 hs</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="#rsvp">Confirmar asistencia</a>
+            <a class="btn btn-secondary" href="#detalle">Ver más</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="fotos/portada1.jpg" alt="Ali y Chris" />
+        </div>
+      </div>
+    </section>
+
+    <section id="detalle" class="section">
+      <div class="container split">
+        <div class="intro-block">
+          <div class="small">El evento</div>
+          <h2>Todo lo que necesitás saber de nuestro gran evento.</h2>
+          <p class="lead muted">
+            Los esperamos!
+          </p>
+        </div>
+        <div>
+          <div class="detail-list">
+            <div class="detail-row">
+              <div class="small">Lugar y horario</div>
+              <h3>Jano's Darwin 2 · Niceto Vega 5350, CABA</h3>
+              <p>La entrada es por Darwin. La ceremonia comienza a las 18:00 hs en el salón, así que les recomendamos llegar unos minutos antes para disfrutar desde el comienzo.</p>
+            </div>
+            <div class="detail-row">
+              <div class="small">Dress code</div>
+              <h3>Elegante sport</h3>
+              <p>Lo que te resulte cómodo y esté dentro del dress code. Queremos que se vean lindos para las 20.000 fotos que vamos a sacar, así que evitemos colores claros como blanco, beige, plateado, gris, amarillo clarito y similares.</p>
+            </div>
+            <div class="detail-row">
+              <div class="small">Un mensaje</div>
+              <h3>Gracias por ser parte.</h3>
+              <p>Ustedes fueron los elegidos para formar parte de este momento tan especial. Durante mucho tiempo no sabíamos si este día iba a llegar alguna vez… pero acá estamos: enamorados, felices y organizando una fiesta para celebrarlo como se merece.</p>
+            </div>
+          </div>
+
+          <div class="countdown-strip">
+            <div class="small">Cuenta regresiva</div>
+            <h3 style="font-size:32px; font-weight:500; margin-top:10px;">Falta cada vez menos</h3>
+            <div class="countdown-grid">
+              <div class="countdown-item"><span class="countdown-number" id="days">0</span><span class="countdown-label">Días</span></div>
+              <div class="countdown-item"><span class="countdown-number" id="hours">0</span><span class="countdown-label">Horas</span></div>
+              <div class="countdown-item"><span class="countdown-number" id="minutes">0</span><span class="countdown-label">Minutos</span></div>
+              <div class="countdown-item"><span class="countdown-number" id="seconds">0</span><span class="countdown-label">Segundos</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="small">Nuestros viajes</div>
+        <h2>Nuestras aventuras por el mundo</h2>
+        <p class="text-banner muted">Si algo nos representa, además del amor, es la cantidad de millas acumuladas. Entre escapadas, viajes y aventuras, ya perdimos la cuenta de cuántas valijas armamos… y esto recién empieza.</p>
+        <div class="photo-grid" style="margin-top: 28px;">
+          <img class="tall" src="fotos/galeria1.jpg" alt="Foto 1" />
+          <img src="fotos/galeria2.jpg" alt="Foto 2" />
+          <img src="fotos/galeria3.jpg" alt="Foto 3" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="small">Preguntas frecuentes</div>
+        <h2>Todo lo que necesitás saber</h2>
+        <div class="faq-list">
+          <details><summary>¿Hay estacionamiento?</summary><p>Sí, hay algunos lugares limitados para estacionar, avisanos por WhatsApp y vemos si podemos reservarte un lugar.</p></details>
+          <details><summary>¿Qué me puedo poner?</summary><p>Lo que te resulte cómodo y esté dentro del dress code. Queremos que se vean lindos para las 20.000 fotos que vamos a sacar. Evitemos colores claros como blanco, beige, plateado, gris, amarillo clarito y similares, para que la única de blanco sea la novia :)</p></details>
+          <details><summary>¿Cómo llego?</summary><p><a href="https://maps.app.goo.gl/4dpDjjkjxvhXBZF28" target="_blank" rel="noreferrer">Ver ubicación en Google Maps</a></p></details>
+          <details><summary>¿Hasta cuándo puedo confirmar?</summary><p>Podés confirmar tu asistencia hasta el 15 de junio.</p></details>
+          <details><summary>¿Puedo avisar restricciones alimentarias?</summary><p>Sí, vamos a tener opciones para quienes tengan restricciones alimentarias. Por favor, acláralas en el formulario cuando confirmes asistencia.</p></details>
+          <details><summary>¿La ceremonia y la fiesta son en el mismo lugar?</summary><p>Sí, la ceremonia será antes de la fiesta, a las 18 hs puntual.</p></details>
+          <details><summary>¿Pueden venir niños?</summary><p>Sí, los niños son más que bienvenidos. Aclaramos que no vamos a contar con cuidadores, así que cada familia es responsable de sus niños :)</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="small">Regalos</div>
+        <div class="gift-line">
+          <div>
+            <h2>Nos vamos a Tokio!</h2>
+            <p class="lead muted" style="max-width:760px;">Que vengan a festejar con nosotros ya es regalo suficiente. Pero si insisten y quieren hacernos un mimo, pueden colaborar con nuestra nueva aventura: capítulo “Luna de miel en Tokio”.</p>
+          </div>
+          <div class="alias-pill">Alias: aliciacornalo</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp" class="section rsvp">
+      <div class="container">
+        <div class="rsvp-panel">
+          <div class="small" style="color: rgba(255,255,255,0.72);">RSVP</div>
+          <h2 style="color:white;">Confirmá tu asistencia</h2>
+          <p>Hacé clic en el botón para completar el formulario. Les pedimos por favor confirmar su asistencia antes del 15 de junio. También pueden indicarnos allí si tienen alguna restricción alimentaria.</p>
+          <div class="actions">
+            <a class="btn btn-secondary" href="https://forms.gle/BUwufBoptDivwVcr7" target="_blank" rel="noreferrer">Ir al formulario RSVP</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">Ali & Chris #Forever&ADay</footer>
+
+    <script>
+      const eventDate = new Date("2026-07-18T18:00:00-03:00").getTime();
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+        if (distance <= 0) {
+          ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).textContent = "0");
+          return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
